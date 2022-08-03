@@ -7,15 +7,18 @@
     />
 
     <!-- <breadcrumb class="breadcrumb-container" /> -->
-      <div class="app-breadcrumb">
-      {{$store.state.user.userInfo.companyName}}
+    <div class="app-breadcrumb">
+      {{ $store.state.user.userInfo.companyName }}
       <span class="breadBtn">体验版</span>
-  </div>
-
+    </div>
     <div class="right-menu">
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
-          <img :src="$store.state.user.userInfo.staffPhoto" class="user-avatar" />
+          <img
+            :src="$store.state.user.userInfo.staffPhoto"
+            class="user-avatar"
+            v-imgError="defaultImg"
+          />
           <span>{{ $store.state.user.userInfo.username }}</span>
           <i class="el-icon-caret-bottom" />
         </div>
@@ -36,8 +39,14 @@
 import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
-
+import defaultImg from "@/assets/common/head.jpg";
 export default {
+  data() {
+    return {
+      // defaultImg: 'https://scpic.chinaz.net/files/pic/pic9/202009/apic27858.jpg',
+      defaultImg
+    }
+  },
   components: {
     Breadcrumb,
     Hamburger
@@ -65,26 +74,24 @@ export default {
   background-image: -webkit-linear-gradient(left, #3d6df8, #5b8cff);
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 
-
-
   .app-breadcrumb {
-  display: inline-block;
-  font-size: 18px;
-  line-height: 50px;
-  margin-left: 10px;
-  color: #ffffff;
-  cursor: text;
-  .breadBtn {
-    background: #84a9fe;
-    font-size: 14px;
-    padding: 0 10px;
     display: inline-block;
-    height: 30px;
-    line-height: 30px;
-    border-radius: 10px;
-    margin-left: 15px;
+    font-size: 18px;
+    line-height: 50px;
+    margin-left: 10px;
+    color: #ffffff;
+    cursor: text;
+    .breadBtn {
+      background: #84a9fe;
+      font-size: 14px;
+      padding: 0 10px;
+      display: inline-block;
+      height: 30px;
+      line-height: 30px;
+      border-radius: 10px;
+      margin-left: 15px;
+    }
   }
-}
 
   .hamburger-container {
     line-height: 46px;
@@ -141,7 +148,7 @@ export default {
         display: flex;
         align-items: center;
         color: #fff;
-        span{
+        span {
           margin: 0 3px;
         }
         .user-avatar {

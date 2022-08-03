@@ -11,7 +11,7 @@ import '@/styles/index.scss' // global css
 import App from './App'
 import store from './store'
 import router from './router'
-
+import * as directivex from '@/directivex'
 import '@/icons' // icon
 import '@/permission' // permission control
 
@@ -33,11 +33,15 @@ Vue.use(ElementUI, { locale })
 // 如果想要中文版 element-ui，按如下方式声明
 // Vue.use(ElementUI)
 
+for (let key in directivex) {
+  Vue.directive(key, directivex[key])
+}
+
 Vue.config.productionTip = false
 
 new Vue({
   el: '#app',
   router,
   store,
-  render: h => h(App)
+  render: (h) => h(App)
 })

@@ -2,7 +2,7 @@
   <div class="dashboard-container">
     <div class="app-container">
       <el-card class="box-card">
-        <TreeTools :treeNode="company" :isRoot="true"/>
+        <TreeTools :treeNode="company" :isRoot="true" />
         <el-tree :data="treeData" :props="defaultProps" default-expand-all>
           <template v-slot="{ data }">
             <TreeTools :treeNode="data" />
@@ -15,6 +15,8 @@
 
 <script>
 import TreeTools from './commponents/tree-tools'
+import { getDeptsApi } from '@/api/departments'
+import { transListToTree }  from "@/utils";
 export default {
   data() {
     return {
@@ -39,7 +41,16 @@ export default {
   components: {
     TreeTools
   },
-  methods: {}
+  created() {
+    this.loadDepats()
+  },
+  methods: {
+    async loadDepats() {
+      const res = await getDeptsApi()
+      console.log(res)
+      this.treeData = transListToTree(res.depts,'')
+    }
+  }
 }
 </script>
 

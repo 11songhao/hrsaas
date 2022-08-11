@@ -5,3 +5,10 @@ export function getDeptsApi() {
     url: '/company/department'
   })
 }
+
+export function delateDeptsApi(id) {
+  return request({
+    url: `/company/department`+id,
+    Method:'DELETE'
+  })
+}

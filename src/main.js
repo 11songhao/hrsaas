@@ -33,7 +33,7 @@ Vue.use(ElementUI, { locale })
 // 如果想要中文版 element-ui，按如下方式声明
 // Vue.use(ElementUI)
 
-for (let key in directivex) {
+for (let key in directivex) {333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
   Vue.directive(key, directivex[key])
 }
 
